@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="style.css" rel="stylesheet">
+	<title>CÁLCULO DE IR</title>
+
+	<head>
+		<script>
+			function calcIR() {
+				//var valorReg = document.f_ir.f_reg.value;
+				//var valorNom = document.f_ir.f_nom.value;
+				var valorSal = document.f_ir.f_sal.value;
+
+				//if ((valorReg == 0) || (valorNom == "") || (valorSal == "")) {
+				if (valorSal == 0) {
+					alert("Digite o peso ou altura");
+				} else {
+					var vsal = parseFloat(valorSal.replace(",", "."));
+					var calc = 0;
+
+					if (vsal < 1434) {
+						calc = 0;
+					} else if (vsal < 2150) {
+						calc = Math.round(vsal * 7.5, 2) / 100;
+					} else if (vsal < 3582) {
+						calc = Math.round(vsal * 15, 2) / 100;
+					} else if (vsal < 3582) {
+						calc = Math.round(vsal * 22.5, 2) / 100;
+					} else {
+						calc = Math.round(vsal * 27.5, 2) / 100;
+					}
+
+					var vcalc = calc.toFixed(2);
+
+					document.getElementById("resul").value = vcalc;
+				}
+			}
+
+		</script>
+	</head>
+
+<body>
+
+	<div class="container">
+		<h1>Calculo do Imposto de Renda</h1>
+		<form class="form" name="f_ir">
+			<div>
+				<label class="title">Registro</label>
+				<input type="text" name="f_reg" value="">
+			</div>
+			<div>
+				<label class="title">Nome</label>
+				<input type="text" name="f_nom" value="">
+			</div>
+			<div>
+				<label class="title">Salário</label>
+				<input type="text" name="f_sal" value="">
+			</div>
+			<div>
+				<button type="button" onclick="calcIR()">
+					Calcular
+				</button>
+			</div>
+			<div>
+				<label class="title">Imposto de Renda</label>
+				<input type="text" id="resul" value="" disabled="disabled">
+			</div>
+		</form>
+
+		<table>
+			<tr>
+				<th>Faixa salarial</th>
+				<th>Alíquota</th>
+			</tr>
+			<tr>
+				<td>Até R$ 1.434</td>
+				<td class="center">0% (isento)</td>
+			</tr>
+			<tr>
+				<td>De R$ 1.434 a R$ 2.150</td>
+				<td class="center">7,5%</td>
+			</tr>
+			<tr>
+				<td>De R$ 2.150 a R$ 2.866</td>
+				<td class="center">15%</td>
+			</tr>
+			<tr>
+				<td>De R$ 2.866 a R$ 3.582</td>
+				<td class="center">22,5%</td>
+			</tr>
+			<tr>
+				<td>Acima de R$ 3.582</td>
+				<td class="center">27,5%</td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+
+</html>
